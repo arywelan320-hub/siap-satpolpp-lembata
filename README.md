@@ -4,7 +4,7 @@
 Satuan Polisi Pamong Praja Kabupaten Lembata  
 Media pembelajaran aktualisasi Latsar CPNS 2026 oleh Mateus Kunradus Parera.
 
-**Aplikasi:** https://arywelan320-hub.github.io/siap-satpolpp-lembata/
+**Aplikasi:** https://arywelan320-hub.github.io/satpolpp/
 
 ## Arsitektur publikasi
 - GitHub Pages memuat aplikasi lengkap.
