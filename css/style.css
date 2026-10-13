@@ -5658,3 +5658,44 @@ body:has(#nativeMenuToggle:checked){
 
 /* ===== END MENU NATIVE TANPA JS v1.14.7 ===== */
 
+
+
+/* ===== SOP + FINAL MOBILE v1.16.0 ===== */
+.sop-hub-v1160{margin:18px 0 22px}
+.sop-lead-v1160{padding:18px 20px;border-radius:18px;background:linear-gradient(135deg,#0B3F6B,#0D668B);color:#fff}
+.sop-lead-v1160>span,.sop-use-v1160>span{display:block;font-size:9px;font-weight:900;letter-spacing:1.2px}
+.sop-lead-v1160>span{color:#BDE9F7}
+.sop-lead-v1160 h2{margin:5px 0 7px;font-size:24px;color:#fff}
+.sop-lead-v1160 p{margin:0;color:#E5F2F7;line-height:1.55}
+.sop-alert-v1160{margin:10px 0 12px;padding:13px 15px;border:1px solid #F0D487;border-radius:13px;background:#FFF9E8;color:#65501D}
+.sop-alert-v1160 b{display:block;margin-bottom:4px;color:#6D4D00}
+.sop-alert-v1160 p{margin:0;line-height:1.5}
+.sop-grid-v1160{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.sop-card-v1160{display:grid;grid-template-columns:38px minmax(0,1fr);gap:10px;padding:14px;border:1px solid #D8E4EA;border-radius:14px;background:#fff;box-shadow:0 5px 16px rgba(16,54,78,.05)}
+.sop-card-v1160 i{width:34px;height:34px;display:grid;place-items:center;border-radius:9px;background:#EAF4F9;color:#0A5F8A;font-style:normal;font-size:10px;font-weight:900}
+.sop-card-v1160 h3{margin:1px 0 5px;color:#173B52;font-size:14px;line-height:1.25}
+.sop-card-v1160 p{margin:0;color:#647A88;font-size:10.5px;line-height:1.5}
+.sop-use-v1160{margin-top:12px;padding:14px;border:1px solid #D8E4EA;border-radius:14px;background:#F8FBFD}
+.sop-use-v1160>span{margin-bottom:8px;color:#0B678F}
+.sop-use-v1160>div{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.sop-use-v1160 button{min-width:0;padding:10px;border:1px solid #CFE0E8;border-radius:10px;background:#fff;text-align:left;color:#244B62}
+.sop-use-v1160 button b,.sop-use-v1160 button small{display:block}.sop-use-v1160 button b{font-size:10px}.sop-use-v1160 button small{margin-top:2px;color:#82919A;font-size:8.5px}
+
+html,body{max-width:100%;overflow-x:hidden}
+.page,.content,.dashboard,.law-list-v1140,.sop-hub-v1160{min-width:0}
+
+@media(max-width:760px){
+  .sop-grid-v1160{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .sop-use-v1160>div{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:430px){
+  .sop-lead-v1160{padding:15px;border-radius:14px}
+  .sop-lead-v1160 h2{font-size:20px}
+  .sop-grid-v1160{grid-template-columns:1fr}
+  .sop-card-v1160{grid-template-columns:34px minmax(0,1fr);padding:12px}
+  .sop-use-v1160>div{grid-template-columns:1fr}
+  .sop-use-v1160 button{min-height:44px}
+  .content{max-width:100%!important}
+  button,.navbtn,label[role="button"]{touch-action:manipulation}
+  .law-list-v1140 details,.law-main-v1140,.law-boundary-v1140,.law-summary-v1140{max-width:100%}
+}
