@@ -5699,3 +5699,27 @@ html,body{max-width:100%;overflow-x:hidden}
   button,.navbtn,label[role="button"]{touch-action:manipulation}
   .law-list-v1140 details,.law-main-v1140,.law-boundary-v1140,.law-summary-v1140{max-width:100%}
 }
+
+
+/* ===== QA MOBILE + KETERBACAAN v1.16.1 ===== */
+@media (max-width:430px){
+  .sop-card-v1160 h3{font-size:15px;line-height:1.4}
+  .sop-card-v1160 p,
+  .sop-lead-v1160 p,
+  .sop-alert-v1160 p,
+  .readiness-list-v113 p,
+  .steps-v1136 article p,
+  .comm-steps-v1137 article>div>p,
+  .comm-example-v1137 p,
+  .situasi-grid-v1138 p,
+  .situasi-focus-v1138 p,
+  .situasi-coordinate-v1138 span,
+  .law-body-v1140 p{font-size:13px!important;line-height:1.55!important}
+  .law-list-v1140 summary b{font-size:13px!important}
+  .law-list-v1140 summary small{font-size:11px!important}
+  .sop-use-v1160 button b{font-size:13px}
+  .sop-use-v1160 button small{font-size:11px}
+  .sop-lead-v1160,.sop-card-v1160,.sop-alert-v1160{min-width:0;overflow-wrap:anywhere}
+  .sop-use-v1160 button{min-height:48px}
+}
+/* ===== END QA MOBILE v1.16.1 ===== */

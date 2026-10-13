@@ -1,6 +1,9 @@
 const pages=document.querySelectorAll(".page");
 const menu=document.getElementById("mobileMenu");
 const burger=document.getElementById("hamburger");
+const desktopMenuButton=document.getElementById("desktopMenuButton");
+const menuBackdrop=document.getElementById("menuBackdrop");
+const menuCloseBtn=document.getElementById("menuCloseBtn");
 
 function showPage(id,push=true){
   const target=document.getElementById(id);
@@ -30,9 +33,6 @@ document.querySelectorAll(".navbtn").forEach(btn=>{
 
 
 /* ===== DRAWER MENU v1.7 ===== */
-const desktopMenuButton=document.getElementById("desktopMenuButton");
-const menuBackdrop=document.getElementById("menuBackdrop");
-const menuCloseBtn=document.getElementById("menuCloseBtn");
 
 function setMenuA11y(open){
   menu.setAttribute("aria-hidden",open?"false":"true");
@@ -61,6 +61,31 @@ if(desktopMenuButton)desktopMenuButton.addEventListener("click",toggleMainMenu);
 if(menuCloseBtn)menuCloseBtn.addEventListener("click",closeMainMenu);
 if(menuBackdrop)menuBackdrop.addEventListener("click",closeMainMenu);
 document.addEventListener("keydown",e=>{if(e.key==="Escape")closeMainMenu();});
+/* Sinkronkan aksesibilitas drawer berbasis checkbox dan tombol keyboard. */
+const nativeToggle=document.getElementById("nativeMenuToggle");
+if(nativeToggle){
+  const syncNativeMenu=()=>{
+    const open=nativeToggle.checked;
+    if(menu) menu.setAttribute("aria-hidden",open?"false":"true");
+    if(menuBackdrop) menuBackdrop.setAttribute("aria-hidden",open?"false":"true");
+  };
+  nativeToggle.addEventListener("change",syncNativeMenu);
+  syncNativeMenu();
+  document.addEventListener("keydown",e=>{
+    if(e.key==="Escape" && nativeToggle.checked){
+      nativeToggle.checked=false;
+      syncNativeMenu();
+    }
+  });
+}
+document.querySelectorAll('label.drawer-item[role="button"]').forEach(label=>{
+  label.addEventListener("keydown",e=>{
+    if(e.key==="Enter" || e.key===" "){
+      e.preventDefault();
+      label.click();
+    }
+  });
+});
 /* ===== END DRAWER MENU v1.7 ===== */
 
 document.querySelectorAll(".acc-title").forEach(btn=>{
@@ -210,7 +235,7 @@ if(searchSituasi){
 }
 
 document.addEventListener("click",e=>{
-  if(!menu.contains(e.target)&&!burger.contains(e.target))menu.classList.remove("open");
+  if(menu && !menu.contains(e.target) && (!burger || !burger.contains(e.target))) menu.classList.remove("open");
 });
 
 
@@ -500,7 +525,7 @@ if(document.getElementById("closeLearnDetail")){
         ["Permendagri Nomor 26 Tahun 2020","Rujukan penyelenggaraan Trantibum dan pelindungan masyarakat.",links.perm26]
       ],
       local:[
-        ["Perda Kabupaten Lembata Nomor 12 Tahun 2012 tentang Ketertiban Umum","Pernah disebut sebagai dasar penertiban PKL di Lewoleba. Status berlaku dan pasal yang akan dipakai harus diverifikasi kembali melalui JDIH/Bagian Hukum.",links.jdih,true]
+        ["Rujukan Perda ketertiban umum Kabupaten Lembata (nomor dan status belum terverifikasi)","Nomor, status keberlakuan, serta pasal yang relevan belum dapat dipastikan dari sumber resmi yang diakses. Jangan gunakan sebagai dasar sanksi sebelum diperiksa melalui JDIH/Bagian Hukum.",links.jdih,true]
       ],
       action:["Utamakan imbauan dan komunikasi persuasif.","Pastikan lokasi memang termasuk ruang yang dilarang/dibatasi.","Penertiban atau penyitaan hanya berdasarkan aturan dan prosedur yang sudah diverifikasi."],
       extra:[["Konteks penertiban PKL Lewoleba 2022",links.pklCase]]
