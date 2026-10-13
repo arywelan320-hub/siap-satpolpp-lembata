@@ -802,7 +802,7 @@ document.addEventListener("click",e=>{
     {q:"Jika masyarakat keberatan terhadap teguran, petugas sebaiknya...",o:["Mendengarkan dulu lalu menjelaskan kembali maksud secara singkat","Memotong pembicaraan agar tidak melebar","Langsung mengancam tindakan"],a:0},
     {q:"Jika dasar aturan atau kewenangan belum jelas...",o:["Tetap bertindak berdasarkan perkiraan","Klarifikasi dan koordinasikan terlebih dahulu","Gunakan kebiasaan lama sebagai dasar"],a:1},
     {q:"Pada situasi yang mulai tegang tetapi masih aman...",o:["Balas dengan suara lebih keras","Redakan percakapan dan gunakan kalimat singkat","Langsung menuduh masyarakat menghambat tugas"],a:1},
-    {q:"SIAP SATPOL PP digunakan sebagai...",o:["SOP baru pengganti aturan resmi","Panduan praktis komunikasi lapangan yang tetap mengikuti SOP dan kewenangan","Aplikasi untuk menentukan sanksi"],a:1}
+    {q:"SIAP SATPOL PP LEMBATA digunakan sebagai...",o:["SOP baru pengganti aturan resmi","Panduan praktis komunikasi lapangan yang tetap mengikuti SOP dan kewenangan","Aplikasi untuk menentukan sanksi"],a:1}
   ];
   const $=id=>document.getElementById(id);let mode="pre";
   function render(){const f=$("quizForm");if(!f)return;f.innerHTML=Q.map((q,i)=>`<fieldset class="quiz-question-v113"><legend>${i+1}. ${q.q}</legend>${q.o.map((o,j)=>`<label><input type="radio" name="q${i}" value="${j}"><span>${String.fromCharCode(65+j)}. ${o}</span></label>`).join("")}</fieldset>`).join("")}
