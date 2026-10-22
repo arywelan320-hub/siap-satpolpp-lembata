@@ -112,7 +112,7 @@
         <span class="drawer-num-v1134">06</span>
         <span class="drawer-copy drawer-copy-v1134">
           <b>SOP &amp; Dasar Hukum</b>
-          <small>9 SOP + 5 rujukan utama</small>
+          <small>9 SOP + 4 rujukan inti</small>
         </span>
         <span class="drawer-arrow">›</span>
       </label>
@@ -864,11 +864,16 @@
   <div class="content narrow test-simple-v113">
     <div class="test-note-v113"><b>Cukup 5 pertanyaan</b><p>Gunakan pertanyaan yang sama pada pre-test dan post-test agar perubahan mudah dibandingkan.</p></div>
     <div class="test-tabs test-tabs-v113"><button type="button" class="test-tab active" data-test="pre">Pre-Test</button><button type="button" class="test-tab" data-test="post">Post-Test</button></div>
-    <div class="participant-fields-v113"><label><span>Nama / Inisial</span><input id="participantName" maxlength="60" placeholder="Nama atau inisial" type="text"></label></div>
+    <div class="participant-fields-v113">
+  <label><span>Nama peserta</span><input id="participantName" maxlength="60" placeholder="Nama peserta" autocomplete="name" required type="text"></label>
+  <label><span>Kode peserta (sama pada ketiga formulir)</span><input id="participantCode" maxlength="24" placeholder="Contoh: POL001" required type="text"></label>
+  <label><span>Unit / bagian (opsional)</span><input id="participantUnit" maxlength="80" placeholder="Contoh: Regu Trantibum" type="text"></label>
+</div>
+<p id="evalConnectionNote" role="status">Pengiriman ke pengelola sedang diperiksa.</p>
     <form id="quizForm" class="quiz-form quiz-v113"></form>
-    <button type="button" class="quiz-submit" id="submitQuiz">Simpan Hasil Pre-Test</button>
-    <div class="quiz-result hidden result-v113" id="quizResult"><b id="quizScore"></b><p id="quizMessage"></p><div id="quizReview"></div></div>
-    <div class="info-box"><b>Untuk laporan aktualisasi</b><p>Yang dibutuhkan cukup nilai rata-rata sebelum dan sesudah penggunaan SIAP SATPOL PP LEMBATA. Tidak perlu ranking, akun, atau statistik penggunaan.</p></div>
+    <button type="button" class="quiz-submit" id="submitQuiz">Kirim Hasil Pre-Test</button>
+    <div class="quiz-result hidden result-v113" id="quizResult"><b id="quizScore"></b><p id="quizMessage" role="status"></p><div id="quizReview"></div></div>
+    <div class="info-box"><b>Untuk laporan aktualisasi</b><p>Gunakan kode peserta yang sama untuk mencocokkan penilaian awal dan akhir. Hanya hasil yang terkonfirmasi masuk ke Google Sheets dapat dihitung dalam laporan aktualisasi.</p></div>
   </div>
 </section>
 <section class="page" id="koordinasi">
@@ -987,7 +992,7 @@
   <header class="subhead theme-orange">
     <button type="button" class="back navbtn" data-page="beranda">←</button>
     <div>
-      <span>9 SOP + 5 RUJUKAN</span>
+      <span>9 SOP + 4 RUJUKAN</span>
       <h1>SOP &amp; Dasar Hukum</h1>
       <p>Rujukan yang dibedakan menurut fungsinya: SOP resmi, dasar tugas dan kewenangan, penyelenggaraan Trantibumlinmas, aturan daerah, serta kompetensi ASN.</p>
     </div>
@@ -1018,7 +1023,7 @@
       <div class="sop-alert-v1160">
         <b>Rujukan yang berlaku sekarang</b>
         <p>Permendagri Nomor 16 Tahun 2023 mencabut Permendagri Nomor 54 Tahun 2011. Menurut Pasal 4, petunjuk teknis SOP daerah diatur dengan Perkada yang berpedoman pada aturan ini. Perbup Lembata tahun 2022 ditemukan di JDIH, tetapi penyesuaiannya setelah 2023 perlu dikonfirmasi. SIAP adalah ringkasan pembelajaran, bukan pengganti naskah SOP resmi, Perkada, surat tugas, atau arahan pimpinan.</p>
-        <p><a href="https://peraturan.go.id/id/permendagri-no-16-tahun-2023" target="_blank" rel="noopener noreferrer">Periksa Permendagri 16/2023 ↗</a> · <a href="https://jdih.lembatakab.go.id/dokumen/view?id=41" target="_blank" rel="noopener noreferrer">Perbup Lembata 2022 ↗</a></p>
+        <p><a href="https://peraturan.bpk.go.id/Details/280635/permendagri-no-16-tahun-2023" target="_blank" rel="noopener noreferrer">Baca naskah resmi SOP 16/2023 ↗</a> · <a href="https://jdih.lembatakab.go.id/dokumen/view?id=41" target="_blank" rel="noopener noreferrer">Perbup Lembata 2022 ↗</a></p>
       </div>
 
       <div class="sop-grid-v1160">
@@ -1063,73 +1068,37 @@
     </section>
     <!-- ===== END SOP INTERNAL v1.16.0 ===== -->
 
+    <p class="law-focus-v1170"><b>RUJUKAN HUKUM TERFOKUS:</b> empat peraturan di bawah dipisahkan dari kelompok SOP. Klik tombol “Baca aturan” untuk membuka sumber resmi. Peraturan bukan otomatis SOP atau izin penindakan.</p>
     <div class="law-list-v1140">
-
       <details open>
-        <summary>
-          <span>01</span>
-          <div><b>Permendagri No. 16 Tahun 2023</b><small>SOP Satpol PP &amp; Kode Etik Polisi Pamong Praja</small></div>
-          <i>›</i>
-        </summary>
+        <summary><span>01</span><div><b>PP No. 16 Tahun 2018</b><small>Dasar tugas, fungsi, dan kewenangan Satpol PP · bukan SOP</small></div><i>›</i></summary>
         <div class="law-body-v1140">
-          <p><b>Fungsi dalam SIAP:</b> rujukan SOP utama dan kode etik pelaksanaan tugas Satpol PP.</p>
-          <p><b>Yang diterapkan:</b> komunikasi dilakukan secara humanis, persuasif, tegas, dan tidak dilepaskan dari SOP serta kewenangan.</p>
-          <p><b>Status:</b> berlaku.</p>
+          <p><b>Fungsi:</b> menjelaskan kedudukan, tugas, fungsi, serta kewenangan Satuan Polisi Pamong Praja dalam pemerintahan daerah.</p>
+          <p><a href="https://peraturan.bpk.go.id/Details/77284/pp-no-16-tahun-2018" target="_blank" rel="noopener noreferrer">Baca aturan PP 16/2018 ↗</a></p>
         </div>
       </details>
-
       <details>
-        <summary>
-          <span>02</span>
-          <div><b>PP No. 16 Tahun 2018</b><small>Tugas, fungsi, dan kewenangan Satpol PP · bukan SOP</small></div>
-          <i>›</i>
-        </summary>
+        <summary><span>02</span><div><b>Permendagri No. 26 Tahun 2020</b><small>Penyelenggaraan ketertiban umum, ketenteraman, dan pelindungan masyarakat</small></div><i>›</i></summary>
         <div class="law-body-v1140">
-          <p><b>Fungsi dalam SIAP:</b> dasar tugas, fungsi, dan kewenangan Satpol PP; peraturan ini bukan dokumen SOP.</p>
-          <p><b>Yang diterapkan:</b> personel memahami bahwa komunikasi dan tindakan lapangan harus tetap berada dalam tugas dan kewenangan Satpol PP.</p>
-          <p><b>Status:</b> berlaku.</p>
+          <p><b>Fungsi:</b> rujukan penyelenggaraan Trantibumlinmas, bukan SOP khusus setiap tindakan Satpol PP.</p>
+          <p><a href="https://peraturan.bpk.go.id/Details/143373/permendagri-no-26-tahun-2020" target="_blank" rel="noopener noreferrer">Baca aturan Permendagri 26/2020 ↗</a></p>
         </div>
       </details>
-
       <details>
-        <summary>
-          <span>03</span>
-          <div><b>Permendagri No. 26 Tahun 2020</b><small>Penyelenggaraan Trantibumlinmas · bukan SOP khusus</small></div>
-          <i>›</i>
-        </summary>
+        <summary><span>03</span><div><b>Perda Kabupaten Lembata No. 12 Tahun 2012</b><small>Tentang Ketertiban Umum · rujukan peraturan daerah</small></div><i>›</i></summary>
         <div class="law-body-v1140">
-          <p><b>Fungsi dalam SIAP:</b> dasar penyelenggaraan ketertiban umum, ketenteraman masyarakat, dan pelindungan masyarakat; bukan SOP khusus Satpol PP.</p>
-          <p><b>Yang diterapkan:</b> membantu menempatkan respons awal personel dalam konteks penyelenggaraan Trantibumlinmas.</p>
-          <p><b>Status:</b> berlaku.</p>
+          <p><b>Fungsi:</b> rujukan daerah terkait ketertiban umum di Kabupaten Lembata; Perda bukan SOP Satpol PP.</p>
+          <p><b>Catatan:</b> judul diidentifikasi dari rujukan pemerintah daerah, tetapi naskah lengkap dan status perubahan/pencabutannya masih perlu dikonfirmasi kepada JDIH/Bagian Hukum. Jangan memakai pasal atau sanksi tanpa dokumen resmi.</p>
+          <p><a href="https://jdih.lembatakab.go.id/dokumen/peraturan" target="_blank" rel="noopener noreferrer">Cari naskah resmi Perda 12/2012 di JDIH Lembata ↗</a></p>
         </div>
       </details>
-
       <details>
-        <summary>
-          <span>04</span>
-          <div><b>Perda Kabupaten Lembata No. 12 Tahun 2012</b><small>Rujukan daerah yang diajukan · nomor, judul, dan status perlu verifikasi</small></div>
-          <i>›</i>
-        </summary>
+        <summary><span>04</span><div><b>PermenPANRB No. 38 Tahun 2017</b><small>Standar kompetensi ASN · referensi pendukung saja</small></div><i>›</i></summary>
         <div class="law-body-v1140">
-          <p><b>Fungsi yang diusulkan:</b> aturan daerah terkait objek penegakan ketertiban umum di Kabupaten Lembata; Perda bukan SOP Satpol PP.</p>
-          <p><b>Catatan verifikasi:</b> nomor 12 Tahun 2012, judul resmi, isi, dan status berlakunya belum dapat dipastikan dari naskah resmi yang ditemukan. Rujukan ini belum boleh dipakai untuk menetapkan pelanggaran, pasal, atau sanksi sebelum diperiksa di Bagian Hukum/JDIH Kabupaten Lembata.</p>
-          <p><a href="https://jdih.lembatakab.go.id/dokumen/peraturan" target="_blank" rel="noopener noreferrer">Periksa dokumen resmi JDIH Lembata ↗</a></p>
+          <p><b>Fungsi:</b> referensi standar kompetensi jabatan ASN, termasuk kompetensi komunikasi dan sosial kultural. Bukan SOP atau dasar penindakan Satpol PP.</p>
+          <p><a href="https://peraturan.bpk.go.id/Details/132633/permen-pan-rb-no-38-tahun-2017" target="_blank" rel="noopener noreferrer">Baca aturan PermenPANRB 38/2017 ↗</a></p>
         </div>
       </details>
-
-      <details>
-        <summary>
-          <span>05</span>
-          <div><b>PermenPANRB No. 38 Tahun 2017</b><small>Kompetensi ASN · referensi pendukung, bukan SOP</small></div>
-          <i>›</i>
-        </summary>
-        <div class="law-body-v1140">
-          <p><b>Fungsi dalam SIAP:</b> referensi pendukung standar kompetensi jabatan ASN, termasuk keterampilan komunikasi profesional; bukan SOP atau dasar penindakan Satpol PP.</p>
-          <p><b>Posisi:</b> referensi pendukung, bukan SOP utama Satpol PP.</p>
-          <p><b>Status:</b> berlaku.</p>
-        </div>
-      </details>
-
     </div>
 
     <div class="law-boundary-v1140">
@@ -1138,7 +1107,7 @@
     </div>
 
     <div class="law-summary-v1140">
-      <span>URUTAN PENGGUNAAN</span>
+      <span>RUJUKAN TERPISAH MENURUT FUNGSI</span>
       <p><b>SOP &amp; Etik</b> → <b>Tugas/Kewenangan</b> → <b>Trantibumlinmas</b> → <b>Aturan Daerah</b> → <b>Kompetensi ASN</b></p>
     </div>
 
@@ -1148,13 +1117,16 @@
   <header class="subhead theme-slate"><button type="button" class="back navbtn" data-page="beranda">←</button><div><span>MENU PENDUKUNG</span><h1>Uji Coba &amp; Masukan</h1><p>Masukan singkat setelah personel menggunakan SIAP SATPOL PP LEMBATA.</p></div></header>
   <div class="content narrow feedback-simple-v113">
     <form id="feedbackForm" class="feedback-form">
-      <label><span>Nama / Inisial</span><input id="fbName" maxlength="60" placeholder="Nama atau inisial" type="text"></label>
+      <label><span>Nama peserta</span><input id="fbName" maxlength="60" placeholder="Nama peserta" autocomplete="name" required type="text"></label>
+<label><span>Kode peserta yang sama</span><input id="fbCode" maxlength="24" placeholder="Contoh: POL001" required type="text"></label>
+<label><span>Unit / bagian (opsional)</span><input id="fbUnit" maxlength="80" placeholder="Contoh: Regu Trantibum" type="text"></label>
       <label><span>SIAP SATPOL PP LEMBATA mudah digunakan?</span><select id="fbEase" required><option value="">Pilih</option><option value="5">Sangat mudah</option><option value="4">Mudah</option><option value="3">Cukup</option><option value="2">Kurang mudah</option><option value="1">Sulit</option></select></label>
       <label><span>Panduan komunikasi membantu?</span><select id="fbHelp" required><option value="">Pilih</option><option value="5">Sangat membantu</option><option value="4">Membantu</option><option value="3">Cukup</option><option value="2">Kurang membantu</option><option value="1">Tidak membantu</option></select></label>
+      <label><span>Materi panduan mudah dipahami?</span><select id="fbClarity" required><option value="">Pilih</option><option value="5">Sangat jelas</option><option value="4">Jelas</option><option value="3">Cukup</option><option value="2">Kurang jelas</option><option value="1">Tidak jelas</option></select></label>
       <label><span>Saran singkat</span><textarea id="fbNote" rows="4" placeholder="Apa yang perlu diperbaiki?"></textarea></label>
-      <button class="feedback-submit" type="submit">Simpan Masukan</button>
+      <button class="feedback-submit" type="submit">Kirim Kuesioner</button>
     </form>
-    <div id="feedbackSaved" class="feedback-saved hidden"><b>Masukan tersimpan ✓</b><p>Data tersimpan pada perangkat ini.</p></div>
+    <div id="feedbackSaved" class="feedback-saved hidden" role="status"><p id="feedbackStatus">Mengirim kuesioner...</p></div>
   </div>
 </section>
 </main>
@@ -1176,10 +1148,11 @@
     <span>Satuan Polisi Pamong Praja Kabupaten Lembata</span>
   </div>
 
-  <small class="footer-version-v1133">Aktualisasi Latsar CPNS 2026 • Versi 1.16.1</small>
+  <small class="footer-version-v1133">Aktualisasi Latsar CPNS 2026 • Versi 1.17.0</small>
 </footer>
-<script src="js/config.js"></script>
-<script src="js/app.js?v=1161"></script>
+<script src="js/config.js?v=1170"></script>
+<script src="js/evaluasi-cloud.js?v=1170"></script>
+<script src="js/app.js?v=1170"></script>
 <script src="js/runtime-final-v1144.js?v=1147"></script>
 </body>
 </html>
