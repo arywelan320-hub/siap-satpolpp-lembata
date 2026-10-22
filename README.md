@@ -17,7 +17,13 @@ Cek kesiapan, respons awal, panduan komunikasi, panduan situasi, alur koordinasi
 ## Status hukum
 SOP yang tampil di aplikasi merupakan ringkasan pembelajaran Permendagri No. 16 Tahun 2023, bukan SOP operasional yang ditetapkan instansi. Petunjuk teknis SOP daerah dan landasan Perda khusus harus dikonfirmasi sebelum tindakan atau penetapan sanksi.
 
-## Privasi
-Hasil tes dan masukan pada versi statis tersimpan secara lokal pada perangkat/browser pengguna; bukan terkirim otomatis ke server atau Google Sheets.
+## Evaluasi sosialisasi (v1.17.0)
+Tiga formulir asli tetap dipertahankan: pre-test, post-test, serta kuesioner. Identitas dihubungkan melalui **kode peserta** yang sama. Google Sheets rekap telah dibuat dan dibagikan kepada editor proyek:
+https://docs.google.com/spreadsheets/d/1e0fI7UigqdM3nNdHU1ulbYGkKFM5m9iOPdVHiZ1nrTY/edit
 
-Versi aplikasi: **1.16.1**. Backup sebelum 1.16.0: `backup-before-v1160`.
+Penerimaan jawaban jarak jauh memerlukan deployment Apps Script oleh pengelola dan pemasangan alamat Web App /exec ke `js/config.js`. Buka `integrasi/PANDUAN_AKTIVASI.md` untuk prosedur dan uji awal. **Sebelum aktivasi, aplikasi secara jelas menandai jawaban BELUM terkirim**. Jangan menghitung hasil lokal sebagai respons pengelola.
+
+## Privasi
+Data nama, kode peserta, dan jawaban tidak boleh dipublikasikan. Spreadsheet hanya dibagikan kepada pengelola berwenang. Endpoint Apps Script penerimaan bersifat publik bila disetel untuk peserta tanpa login, tetapi URL spreadsheet bukan publik. Monitor penyalahgunaan dan lakukan pengujian antesosialisasi.
+
+Versi aplikasi: **1.17.0**. Backup sebelum perubahan: `backup-before-v1170`. Backup historis: `backup-before-v1160`.
