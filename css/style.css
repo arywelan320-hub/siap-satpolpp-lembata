@@ -5723,3 +5723,14 @@ html,body{max-width:100%;overflow-x:hidden}
   .sop-use-v1160 button{min-height:48px}
 }
 /* ===== END QA MOBILE v1.16.1 ===== */
+
+
+/* ===== INTEGRASI EVALUASI v1.17.0: penataan ringan, desain utama tetap ===== */
+.participant-fields-v113{display:grid;gap:10px}
+.participant-fields-v113 label{display:block}
+.participant-fields-v113 label>span{display:block;margin-bottom:4px;color:#526D7E;font-weight:800;font-size:12px}
+#evalConnectionNote{margin:8px 0 13px;padding:10px 12px;border-radius:9px;background:#FFF8E7;border-left:3px solid #D6A12B;color:#604B22;font-size:12px;line-height:1.45}
+#quizMessage,#feedbackStatus{font-size:13px;line-height:1.5}
+.feedback-simple-v113 .feedback-saved{background:#F7FAFC;border-left-color:#CBD5E1}
+@media(max-width:650px){.participant-fields-v113 label>span,#evalConnectionNote{font-size:13px}}
+/* ===== END INTEGRASI EVALUASI v1.17.0 ===== */
