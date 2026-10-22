@@ -820,8 +820,9 @@ document.addEventListener("click",e=>{
 
 
 
-/* ===== EVALUASI SEDERHANA v1.13 ===== */
+/* ===== EVALUASI CLOUD v1.17.0 ===== */
 (function(){
+  "use strict";
   const Q=[
     {q:"Saat mulai berbicara dengan masyarakat, langkah yang paling tepat adalah...",o:["Langsung menyebut pelanggaran","Sapa, perkenalkan diri, jelaskan maksud, lalu dengarkan","Menaikkan nada agar terlihat tegas"],a:1},
     {q:"Jika masyarakat keberatan terhadap teguran, petugas sebaiknya...",o:["Mendengarkan dulu lalu menjelaskan kembali maksud secara singkat","Memotong pembicaraan agar tidak melebar","Langsung mengancam tindakan"],a:0},
@@ -829,13 +830,78 @@ document.addEventListener("click",e=>{
     {q:"Pada situasi yang mulai tegang tetapi masih aman...",o:["Balas dengan suara lebih keras","Redakan percakapan dan gunakan kalimat singkat","Langsung menuduh masyarakat menghambat tugas"],a:1},
     {q:"SIAP SATPOL PP LEMBATA digunakan sebagai...",o:["SOP baru pengganti aturan resmi","Panduan praktis komunikasi lapangan yang tetap mengikuti SOP dan kewenangan","Aplikasi untuk menentukan sanksi"],a:1}
   ];
-  const $=id=>document.getElementById(id);let mode="pre";
-  function render(){const f=$("quizForm");if(!f)return;f.innerHTML=Q.map((q,i)=>`<fieldset class="quiz-question-v113"><legend>${i+1}. ${q.q}</legend>${q.o.map((o,j)=>`<label><input type="radio" name="q${i}" value="${j}"><span>${String.fromCharCode(65+j)}. ${o}</span></label>`).join("")}</fieldset>`).join("")}
-  function setMode(m){mode=m;document.querySelectorAll(".test-tab").forEach(b=>b.classList.toggle("active",b.dataset.test===m));if($("submitQuiz"))$("submitQuiz").textContent="Simpan Hasil "+(m==="pre"?"Pre-Test":"Post-Test");$("quizResult")?.classList.add("hidden");render()}
+  const $=id=>document.getElementById(id);
+  let mode="pre";
+  const cloud=window.SIAP_EVAL_CLOUD;
+  const configured=!!(cloud&&cloud.ready);
+  function render(){
+    const f=$("quizForm");if(!f)return;
+    f.innerHTML=Q.map((q,i)=>'<fieldset class="quiz-question-v113"><legend>'+(i+1)+'. '+q.q+'</legend>'+q.o.map((o,j)=>'<label><input type="radio" name="q'+i+'" value="'+j+'"><span>'+String.fromCharCode(65+j)+'. '+o+'</span></label>').join("")+'</fieldset>').join("");
+  }
+  function setMode(m){
+    mode=m;
+    document.querySelectorAll(".test-tab").forEach(b=>b.classList.toggle("active",b.dataset.test===m));
+    if($("submitQuiz"))$("submitQuiz").textContent="Kirim Hasil "+(m==="pre"?"Pre-Test":"Post-Test");
+    $("quizResult")?.classList.add("hidden");
+    render();
+  }
+  function identity(prefix){
+    const name=($(prefix==="quiz"?"participantName":"fbName")?.value||"").trim();
+    const code=($(prefix==="quiz"?"participantCode":"fbCode")?.value||"").trim().toUpperCase();
+    const unit=($(prefix==="quiz"?"participantUnit":"fbUnit")?.value||"").trim();
+    if(name.length<2||name.length>60){alert("Isi nama peserta (2–60 karakter).");return null;}
+    if(!/^[A-Z0-9-]{4,24}$/.test(code)){alert("Isi kode peserta 4–24 karakter (huruf, angka, tanda hubung). Gunakan kode yang sama untuk pre-test, post-test, dan kuesioner.");return null;}
+    return {name,code,unit};
+  }
+  function saveLocal(key,data){
+    try{localStorage.setItem(key,JSON.stringify(data));return true;}catch(e){return false;}
+  }
+  async function deliver(data,status,button){
+    const label=button?button.textContent:"";
+    if(button){button.disabled=true;button.textContent="Mengirim ke pengelola…";}
+    status.textContent=configured?"Menunggu konfirmasi Google Sheets…":"Belum terhubung ke Google Sheets; salinan lokal saja.";
+    let result;
+    try{result=await cloud.send(data);}
+    catch(e){result={ok:false,message:"Pengiriman gagal. Tidak ada konfirmasi dari pengelola."};}
+    status.textContent=(result.ok?"Terkirim ke pengelola. ":"BELUM terkirim ke pengelola. ")+result.message;
+    status.style.color=result.ok?"#166534":"#9a3412";
+    if(button){button.disabled=false;button.textContent=label;}
+    return result.ok;
+  }
   document.querySelectorAll(".test-tab").forEach(b=>b.addEventListener("click",()=>setMode(b.dataset.test)));
-  $("submitQuiz")?.addEventListener("click",()=>{let correct=0,answers=[];for(let i=0;i<Q.length;i++){const x=document.querySelector(`input[name="q${i}"]:checked`);if(!x){alert(`Soal nomor ${i+1} belum dijawab.`);return}const v=Number(x.value);answers.push(v);if(v===Q[i].a)correct++}const score=correct*20;const name=($("participantName")?.value||"").trim()||"Tanpa nama";localStorage.setItem(mode==="pre"?"siap_simple_pre_v113":"siap_simple_post_v113",JSON.stringify({name,score,answers,timestamp:new Date().toISOString()}));$("quizScore").textContent=`${mode==="pre"?"Pre-Test":"Post-Test"}: ${score}/100`;$("quizMessage").textContent=mode==="pre"?"Nilai awal tersimpan. Lanjutkan membaca panduan dan simulasi sebelum post-test.":"Nilai post-test tersimpan. Bandingkan dengan nilai pre-test untuk bahan laporan aktualisasi.";$("quizReview").innerHTML=Q.map((q,i)=>`<p>${answers[i]===q.a?"✓":"×"} Soal ${i+1}</p>`).join("");$("quizResult").classList.remove("hidden")});
-  $("feedbackForm")?.addEventListener("submit",e=>{e.preventDefault();localStorage.setItem("siap_simple_feedback_v113",JSON.stringify({name:($("fbName")?.value||"").trim()||"Tanpa nama",ease:Number($("fbEase")?.value||0),help:Number($("fbHelp")?.value||0),note:($("fbNote")?.value||"").trim(),timestamp:new Date().toISOString()}));$("feedbackSaved")?.classList.remove("hidden")});
+  if($("evalConnectionNote")){
+    $("evalConnectionNote").textContent=configured?
+      "Jawaban akan dikirim ke rekap Google Sheets pengelola setelah mendapat konfirmasi. Gunakan kode peserta yang sama pada semua formulir.":
+      "Pengiriman ke Google Sheets belum diaktifkan pengelola. Hasil belum dapat dipantau dari perangkat lain. Jangan gunakan untuk pendataan resmi sebelum aktif.";
+  }
+  $("submitQuiz")?.addEventListener("click",async ()=>{
+    const person=identity("quiz");if(!person)return;
+    let correct=0,answers=[];
+    for(let i=0;i<Q.length;i++){
+      const x=document.querySelector('input[name="q'+i+'"]:checked');
+      if(!x){alert("Soal nomor "+(i+1)+" belum dijawab.");return;}
+      const v=Number(x.value);answers.push(v);if(v===Q[i].a)correct++;
+    }
+    const score=correct*20;
+    saveLocal(mode==="pre"?"siap_simple_pre_v113":"siap_simple_post_v113",{...person,score,answers,timestamp:new Date().toISOString()});
+    $("quizScore").textContent=(mode==="pre"?"Pre-Test":"Post-Test")+": "+score+"/100";
+    $("quizReview").innerHTML=Q.map((q,i)=>'<p>'+(answers[i]===q.a?"✓":"×")+' Soal '+(i+1)+'</p>').join("");
+    $("quizResult").classList.remove("hidden");
+    const packet={mode:mode,name:person.name,code:person.code,unit:person.unit};
+    answers.forEach((v,i)=>packet["a"+i]=v);
+    await deliver(packet,$("quizMessage"),$("submitQuiz"));
+  });
+  $("feedbackForm")?.addEventListener("submit",async e=>{
+    e.preventDefault();
+    const person=identity("feedback");if(!person)return;
+    const ease=Number($("fbEase")?.value),help=Number($("fbHelp")?.value),clarity=Number($("fbClarity")?.value);
+    if([ease,help,clarity].some(n=>!Number.isInteger(n)||n<1||n>5)){alert("Lengkapi tiga penilaian kuesioner.");return;}
+    const note=($("fbNote")?.value||"").trim();
+    const data={...person,ease,help,clarity,note,timestamp:new Date().toISOString()};
+    saveLocal("siap_simple_feedback_v113",data);
+    $("feedbackSaved")?.classList.remove("hidden");
+    await deliver({...data,mode:"feedback"},$("feedbackStatus"),$("feedbackForm").querySelector('button[type="submit"]'));
+  });
   render();
 })();
-/* ===== END EVALUASI SEDERHANA v1.13 ===== */
-
+/* ===== END EVALUASI CLOUD v1.17.0 ===== */
