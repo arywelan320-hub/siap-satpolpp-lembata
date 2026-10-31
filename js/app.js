@@ -1005,7 +1005,7 @@ document.addEventListener("click",e=>{
     const responseLabel=$("fbResponse").selectedOptions[0].textContent.trim();
     // Tetap kompatibel dengan Apps Script lama: jawaban Q4 dan saran disimpan terstruktur di kolom H,
     // lalu ditampilkan terpisah melalui kolom J-K yang otomatis dihitung di Google Sheets pengelola.
-    const suggestion=($("fbNote")?.value||"").trim().replace(/\\s+/g," ").slice(0,350);
+    const suggestion=($("fbNote")?.value||"").trim().replace(/\s+/g," ").slice(0,350);
     const note="Q4_RESPONS="+responseLabel+"; SARAN="+suggestion;
     const data={...person,ease,help,clarity,response,suggestion,note,package:"v1.18",timestamp:new Date().toISOString()};
     saveLocal("siap_simple_feedback_v118",data);
