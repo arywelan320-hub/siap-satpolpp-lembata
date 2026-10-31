@@ -7,7 +7,7 @@
 <meta content="#0B3F6B" name="theme-color"/>
 <meta name="description" content="Media pembelajaran digital untuk komunikasi persuasif, respons awal, simulasi, SOP, dan panduan lapangan Satpol PP Kabupaten Lembata.">
 <title>SIAP SATPOL PP LEMBATA | Panduan Komunikasi dan Respons Lapangan</title>
-<link href="css/style.css?v=1172" rel="stylesheet"/>
+<link href="css/style.css?v=1180" rel="stylesheet"/>
 <meta property="og:title" content="SIAP SATPOL PP LEMBATA | Panduan Komunikasi dan Respons Lapangan">
 <meta property="og:description" content="Media pembelajaran digital untuk komunikasi persuasif, respons awal, simulasi, SOP, dan panduan lapangan Satpol PP Kabupaten Lembata.">
 <meta property="og:url" content="https://arywelan320-hub.github.io/siap-satpolpp-lembata/">
@@ -860,9 +860,9 @@
   </div>
 </section>
 <section class="page" id="tes">
-  <header class="subhead theme-gold"><button type="button" class="back navbtn" data-page="beranda">←</button><div><span>MENU PENDUKUNG</span><h1>Cek Pemahaman</h1><p>Pre-test dan post-test sederhana untuk melihat perubahan pemahaman.</p></div></header>
+  <header class="subhead theme-gold"><button type="button" class="back navbtn" data-page="beranda">←</button><div><span>MENU PENDUKUNG</span><h1>Cek Pemahaman</h1><p>Pre-Test dan Post-Test memakai soal berbeda dengan indikator sepadan.</p></div></header>
   <div class="content narrow test-simple-v113">
-    <div class="test-note-v113"><b>Cukup 5 pertanyaan</b><p>Gunakan pertanyaan yang sama pada pre-test dan post-test agar perubahan mudah dibandingkan.</p></div>
+    <div class="test-note-v113"><b>Dua paket soal berbeda, masing-masing 5 pertanyaan</b><p>Pre-Test mengukur pemahaman awal; Post-Test memakai kasus lapangan setelah mempelajari panduan. Keduanya mengukur 5 indikator yang sama.</p></div><p id="quizModeDescription" class="eval-guide-v1172">Pre-Test: jawab berdasarkan pemahaman awal sebelum membaca panduan.</p>
     <div class="test-tabs test-tabs-v113"><button type="button" class="test-tab active" data-test="pre">Pre-Test</button><button type="button" class="test-tab" data-test="post">Post-Test</button></div>
     <div class="participant-fields-v113">
   <label><span>Nama lengkap peserta</span><input id="participantName" maxlength="60" placeholder="Nama peserta" autocomplete="name" required type="text"></label>
@@ -1114,15 +1114,16 @@
   </div>
 </section>
 <section class="page" id="feedback">
-  <header class="subhead theme-slate"><button type="button" class="back navbtn" data-page="beranda">←</button><div><span>MENU PENDUKUNG</span><h1>Uji Coba &amp; Masukan</h1><p>Masukan singkat setelah personel menggunakan SIAP SATPOL PP LEMBATA.</p></div></header>
+  <header class="subhead theme-slate"><button type="button" class="back navbtn" data-page="beranda">←</button><div><span>MENU PENDUKUNG</span><h1>Kuesioner Monitoring dan Evaluasi</h1><p>Isi sesuai pengalaman dan pendapat setelah menggunakan panduan SIAP SATPOL PP LEMBATA.</p></div></header>
   <div class="content narrow feedback-simple-v113">
     <form id="feedbackForm" class="feedback-form">
       <label><span>Nama lengkap peserta</span><input id="fbName" maxlength="60" placeholder="Nama peserta" autocomplete="name" required type="text"></label>
 <label><span>Unit / bagian</span><select id="fbUnit" required><option value="">Ketuk untuk memilih unit / bagian</option><option value="Sekretariat / Administrasi">Sekretariat / Administrasi</option><option value="Bidang Penegakan Perundang-undangan Daerah">Bidang Penegakan Perundang-undangan Daerah</option><option value="Bidang Ketertiban Umum dan Ketenteraman Masyarakat">Bidang Ketertiban Umum dan Ketenteraman Masyarakat</option><option value="Perlindungan Masyarakat (Linmas)">Perlindungan Masyarakat (Linmas)</option><option value="Bidang Sumber Daya Aparatur">Bidang Sumber Daya Aparatur</option><option value="Bidang Penanggulangan Kebakaran">Bidang Penanggulangan Kebakaran</option><option value="Regu / Petugas Lapangan (Trantibum)">Regu / Petugas Lapangan (Trantibum)</option><option value="Lainnya / Belum Tahu">Lainnya / Belum Tahu</option></select></label>
-      <label><span>SIAP SATPOL PP LEMBATA mudah digunakan?</span><select id="fbEase" required><option value="">Pilih</option><option value="5">Sangat mudah</option><option value="4">Mudah</option><option value="3">Cukup</option><option value="2">Kurang mudah</option><option value="1">Sulit</option></select></label>
-      <label><span>Panduan komunikasi membantu?</span><select id="fbHelp" required><option value="">Pilih</option><option value="5">Sangat membantu</option><option value="4">Membantu</option><option value="3">Cukup</option><option value="2">Kurang membantu</option><option value="1">Tidak membantu</option></select></label>
-      <label><span>Materi panduan mudah dipahami?</span><select id="fbClarity" required><option value="">Pilih</option><option value="5">Sangat jelas</option><option value="4">Jelas</option><option value="3">Cukup</option><option value="2">Kurang jelas</option><option value="1">Tidak jelas</option></select></label>
-      <label><span>Saran singkat</span><textarea id="fbNote" rows="4" placeholder="Apa yang perlu diperbaiki?"></textarea></label>
+      <label><span>1. Apakah SIAP SATPOL PP mudah digunakan?</span><select id="fbEase" required><option value="">Ketuk untuk memilih jawaban</option><option value="5">Sangat mudah</option><option value="4">Mudah</option><option value="3">Cukup mudah</option><option value="1">Sulit</option></select></label>
+      <label><span>2. Apakah panduan komunikasi dalam SIAP SATPOL PP membantu personel dalam memahami cara berkomunikasi secara humanis dan persuasif?</span><select id="fbHelp" required><option value="">Ketuk untuk memilih jawaban</option><option value="5">Sangat membantu</option><option value="4">Membantu</option><option value="3">Cukup membantu</option><option value="1">Tidak membantu</option></select></label>
+      <label><span>3. Apakah materi panduan SIAP SATPOL PP mudah dipahami?</span><select id="fbClarity" required><option value="">Ketuk untuk memilih jawaban</option><option value="5">Sangat jelas</option><option value="4">Jelas</option><option value="3">Cukup jelas</option><option value="1">Tidak jelas</option></select></label>
+      <label><span>4. Apakah Anda merasa lebih terbantu dalam menentukan respons awal ketika menghadapi situasi di lapangan setelah mempelajari panduan SIAP SATPOL PP?</span><select id="fbResponse" required><option value="">Ketuk untuk memilih jawaban</option><option value="5">Sangat terbantu</option><option value="4">Terbantu</option><option value="3">Cukup terbantu</option><option value="1">Tidak terbantu</option></select></label>
+      <label><span>5. Apa saran atau masukan Anda untuk penyempurnaan SIAP SATPOL PP ke depannya?</span><textarea id="fbNote" maxlength="350" rows="4" placeholder="Tuliskan yang sudah baik, kendala, atau materi yang perlu ditambahkan (opsional)."></textarea></label>
       <p class="eval-privacy-v1170"><small>Jawaban hanya untuk evaluasi penggunaan aplikasi dan diterima oleh pengelola yang berwenang.</small></p>
       <button class="feedback-submit" type="submit">Kirim Kuesioner</button>
     </form>
@@ -1148,11 +1149,11 @@
     <span>Satuan Polisi Pamong Praja Kabupaten Lembata</span>
   </div>
 
-  <small class="footer-version-v1133">Aktualisasi Latsar CPNS 2026 • Versi 1.17.2</small>
+  <small class="footer-version-v1133">Aktualisasi Latsar CPNS 2026 • Versi 1.18.0</small>
 </footer>
 <script src="js/config.js?v=1170-aktivasi1"></script>
-<script src="js/evaluasi-cloud.js?v=1171"></script>
-<script src="js/app.js?v=1172"></script>
+<script src="js/evaluasi-cloud.js?v=1180"></script>
+<script src="js/app.js?v=1180"></script>
 <script src="js/runtime-final-v1144.js?v=1171"></script>
 </body>
 </html>
