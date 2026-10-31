@@ -17,8 +17,8 @@ Cek kesiapan, respons awal, panduan komunikasi, panduan situasi, alur koordinasi
 ## Status hukum
 SOP yang tampil di aplikasi merupakan ringkasan pembelajaran Permendagri No. 16 Tahun 2023, bukan SOP operasional yang ditetapkan instansi. Petunjuk teknis SOP daerah dan landasan Perda khusus harus dikonfirmasi sebelum tindakan atau penetapan sanksi.
 
-## Evaluasi sosialisasi (v1.17.1)
-Tiga formulir asli tetap dipertahankan: pre-test, post-test, serta kuesioner. Identitas dihubungkan melalui **kode peserta** yang sama. Google Sheets rekap telah dibuat dan dibagikan kepada editor proyek:
+## Evaluasi sosialisasi (v1.17.2)
+Tiga formulir asli tetap dipertahankan: pre-test, post-test, serta kuesioner. Peserta cukup mengisi **nama lengkap** dan memilih **unit/bagian** dari daftar. Kode internal dibuat otomatis dari gabungan nama dan unit untuk mencocokkan pre-test, post-test dan kuesioner. Nama dan unit harus sama di ketiga formulir; peserta bernama sama dalam unit sama perlu mencantumkan nama lengkap yang membedakan. Google Sheets rekap telah dibuat dan dibagikan kepada editor proyek:
 https://docs.google.com/spreadsheets/d/1e0fI7UigqdM3nNdHU1ulbYGkKFM5m9iOPdVHiZ1nrTY/edit
 
 Penerimaan jawaban jarak jauh memerlukan deployment Apps Script oleh pengelola dan pemasangan alamat Web App /exec ke `js/config.js`. Buka `integrasi/PANDUAN_AKTIVASI.md` untuk prosedur dan uji awal. **Sebelum aktivasi, aplikasi secara jelas menandai jawaban BELUM terkirim**. Jangan menghitung hasil lokal sebagai respons pengelola.
@@ -26,8 +26,11 @@ Penerimaan jawaban jarak jauh memerlukan deployment Apps Script oleh pengelola d
 ## Privasi
 Data nama, kode peserta, dan jawaban tidak boleh dipublikasikan. Spreadsheet hanya dibagikan kepada pengelola berwenang. Endpoint Apps Script penerimaan bersifat publik bila disetel untuk peserta tanpa login, tetapi URL spreadsheet bukan publik. Monitor penyalahgunaan dan lakukan pengujian antesosialisasi.
 
-Versi aplikasi: **1.17.1**. Backup sebelum perubahan: `backup-before-v1170`. Backup historis: `backup-before-v1160`.
+Versi aplikasi: **1.17.2**. Backup sebelum perubahan: `backup-before-v1170`. Backup historis: `backup-before-v1160`.
 
 
 ### Koreksi 1.17.1
 Handler pre-test, post-test dan kuesioner yang duplikat dalam runtime lama dinonaktifkan agar hanya pengiriman berbasis konfirmasi Google Sheets yang berjalan. Simulasi dan tata letak tidak diubah.
+
+### Perubahan v1.17.2
+Kode peserta tidak ditampilkan; unit/bagian menjadi dropdown yang mencakup Sekretariat, Penegakan Perundang-undangan Daerah, Ketertiban Umum dan Ketenteraman, Linmas, Sumber Daya Aparatur, Penanggulangan Kebakaran, Regu Trantibum, dan Lainnya. Endpoint Google Apps Script tidak perlu diubah karena tetap menerima kode internal otomatis.
