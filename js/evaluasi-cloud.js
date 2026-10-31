@@ -1,4 +1,4 @@
-/* SIAP SATPOL PP LEMBATA - bridge evaluasi Google Sheets v1.17.0
+/* SIAP SATPOL PP LEMBATA - bridge evaluasi Google Sheets v1.18.0
    Tidak ada akses baca ke Google Sheets dari browser peserta. */
 (function () {
   "use strict";
@@ -10,7 +10,7 @@
     var bits = new Uint8Array(16);
     if (window.crypto && window.crypto.getRandomValues) window.crypto.getRandomValues(bits);
     else for (var i=0;i<bits.length;i++) bits[i] = Math.floor(Math.random()*256);
-    return "eval_" + Array.prototype.map.call(bits, function(n) {return n.toString(16).padStart(2,"0");}).join("");
+    return "v118_" + Array.prototype.map.call(bits, function(n) {return n.toString(16).padStart(2,"0");}).join("");
   }
   function send(payload) {
     if (!ready) return Promise.resolve({ok:false, message:"Pengiriman ke pengelola belum diaktifkan. Data hanya tersimpan di perangkat ini."});
