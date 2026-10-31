@@ -33,9 +33,21 @@ for (const width of widths){
       await page.locator('.bottom-nav button[data-page="tes"]').click();
       check('Tes dapat dibuka',await page.locator('#tes').evaluate(e=>e.classList.contains('active')));
       check('Lima soal tersedia',await page.locator('#quizForm fieldset').count()===5);
+      check('Kode peserta tidak diminta',await page.locator('#participantCode').count()===0);
+      await page.locator('#participantName').fill('Peserta Audit Otomatis');
+      await page.locator('#participantUnit').selectOption({index:1});
+      const preText=await page.locator('#quizForm fieldset legend').first().textContent();
+      await page.locator('.test-tab[data-test="post"]').click();
+      const postText=await page.locator('#quizForm fieldset legend').first().textContent();
+      check('Soal Pre-Test dan Post-Test berbeda',preText!==postText && (await page.locator('#quizForm fieldset').count())===5);
+      await page.locator('.test-tab[data-test="pre"]').click();
+      // Stubbing server only in automated browser test: do not send fabricated participant data.
+      await page.evaluate(()=>{window.SIAP_EVAL_CLOUD.send=async ()=>({ok:true,message:'Pengujian lokal tanpa kirim data.'});});
       for(let k=0;k<5;k++) await page.locator('input[name="q'+k+'"]').first().check();
       await page.locator('#submitQuiz').click();
       check('Hasil tes tampil',await page.locator('#quizResult').isVisible());
+      await page.evaluate(()=>showPage('feedback'));
+      check('Kuesioner empat pilihan penilaian',await page.locator('#feedbackForm select[id^="fb"]').count()===5 && await page.locator('#fbResponse option').count()===5);
     }
     await page.evaluate(()=>showPage('beranda'));
     await page.screenshot({path:'qa-artifacts/beranda-'+width+'.png',fullPage:true});
