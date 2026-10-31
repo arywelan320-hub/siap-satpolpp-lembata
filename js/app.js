@@ -820,28 +820,119 @@ document.addEventListener("click",e=>{
 
 
 
-/* ===== EVALUASI CLOUD v1.17.0 ===== */
+/* ===== EVALUASI CLOUD v1.18.0 ===== */
 (function(){
   "use strict";
-  const Q=[
-    {q:"Saat mulai berbicara dengan masyarakat, langkah yang paling tepat adalah...",o:["Langsung menyebut pelanggaran","Sapa, perkenalkan diri, jelaskan maksud, lalu dengarkan","Menaikkan nada agar terlihat tegas"],a:1},
-    {q:"Jika masyarakat keberatan terhadap teguran, petugas sebaiknya...",o:["Mendengarkan dulu lalu menjelaskan kembali maksud secara singkat","Memotong pembicaraan agar tidak melebar","Langsung mengancam tindakan"],a:0},
-    {q:"Jika dasar aturan atau kewenangan belum jelas...",o:["Tetap bertindak berdasarkan perkiraan","Klarifikasi dan koordinasikan terlebih dahulu","Gunakan kebiasaan lama sebagai dasar"],a:1},
-    {q:"Pada situasi yang mulai tegang tetapi masih aman...",o:["Balas dengan suara lebih keras","Redakan percakapan dan gunakan kalimat singkat","Langsung menuduh masyarakat menghambat tugas"],a:1},
-    {q:"SIAP SATPOL PP LEMBATA digunakan sebagai...",o:["SOP baru pengganti aturan resmi","Panduan praktis komunikasi lapangan yang tetap mengikuti SOP dan kewenangan","Aplikasi untuk menentukan sanksi"],a:1}
-  ];
+  // Dua paket setara menurut 5 indikator: komunikasi awal, persuasif, kewenangan, deeskalasi, SOP.
+  // Indeks kunci sama dengan Apps Script penerima yang sudah ter-deploy.
+  const PRE_QUESTIONS=[
+  {
+    "q": "Ketika petugas Satpol PP mulai memberikan imbauan ketertiban kepada warga, tindakan pertama yang tepat adalah...",
+    "o": [
+      "Langsung menyatakan warga melanggar aturan tanpa penjelasan",
+      "Menyapa, memperkenalkan diri, menjelaskan maksud, lalu mendengarkan warga",
+      "Menaikkan suara agar petugas terlihat tegas"
+    ],
+    "a": 1
+  },
+  {
+    "q": "Jika warga menyampaikan keberatan terhadap imbauan petugas, sikap yang paling sesuai komunikasi persuasif adalah...",
+    "o": [
+      "Mendengarkan keberatan dan menjelaskan alasan imbauan dengan bahasa tenang",
+      "Memotong pembicaraan warga agar tugas cepat selesai",
+      "Mengancam sanksi sebelum memeriksa dasar aturan"
+    ],
+    "a": 0
+  },
+  {
+    "q": "Ketika petugas belum yakin terhadap dasar aturan atau batas kewenangannya, tindakan yang tepat adalah...",
+    "o": [
+      "Tetap bertindak berdasarkan perkiraan pribadi",
+      "Memeriksa aturan dan berkoordinasi dengan atasan atau instansi berwenang",
+      "Mengikuti kebiasaan lama tanpa memeriksa ketentuan"
+    ],
+    "a": 1
+  },
+  {
+    "q": "Saat percakapan dengan masyarakat mulai memanas tetapi belum ada ancaman langsung, petugas sebaiknya...",
+    "o": [
+      "Membalas dengan nada lebih keras",
+      "Menjaga jarak aman, berbicara singkat dan tenang, serta mengupayakan deeskalasi",
+      "Mempermalukan warga di depan orang lain"
+    ],
+    "a": 1
+  },
+  {
+    "q": "Dalam tugas penegakan Perda secara nonyustisial, pedoman yang harus diutamakan petugas adalah...",
+    "o": [
+      "Keputusan pribadi petugas sebagai pengganti aturan",
+      "SOP, kode etik, dasar hukum, surat tugas, dan kewenangan yang berlaku",
+      "Arahan dari unggahan media sosial tanpa verifikasi"
+    ],
+    "a": 1
+  }
+];
+  const POST_QUESTIONS=[
+  {
+    "q": "Di kawasan pasar Lewoleba, seorang pedagang meminta penjelasan ketika petugas menyampaikan imbauan penataan lapak. Langkah yang paling tepat adalah...",
+    "o": [
+      "Memerintahkan pindah tanpa mendengar penjelasan pedagang",
+      "Memperkenalkan diri, menjelaskan dasar imbauan, mendengar keberatan, dan mengutamakan dialog",
+      "Memotret pedagang lalu mengunggahnya untuk memberi efek jera"
+    ],
+    "a": 1
+  },
+  {
+    "q": "Saat patroli, seorang warga mengeluh keras karena merasa perlakuan petugas tidak adil. Respons yang paling tepat adalah...",
+    "o": [
+      "Mendengarkan keluhan, menjawab dengan bahasa sederhana, lalu menerangkan prosedur yang berlaku",
+      "Menyuruh warga diam agar keadaan cepat selesai",
+      "Menghindari penjelasan dan langsung meninggalkan warga"
+    ],
+    "a": 0
+  },
+  {
+    "q": "Tim menerima laporan dugaan pelanggaran di fasilitas umum, tetapi ketentuan Perda yang relevan dan kewenangan penindakan belum dipastikan. Petugas sebaiknya...",
+    "o": [
+      "Langsung menjatuhkan sanksi berdasarkan laporan lisan",
+      "Memverifikasi informasi, memastikan dasar hukum, lalu berkoordinasi sebelum tindakan lebih lanjut",
+      "Menganggap setiap laporan pasti benar tanpa pemeriksaan"
+    ],
+    "a": 1
+  },
+  {
+    "q": "Ketika pengaturan ketertiban pada kegiatan masyarakat, beberapa orang mulai berkerumun dan menyela petugas, tetapi situasi masih terkendali. Sikap tepat adalah...",
+    "o": [
+      "Membalas teriakan kerumunan agar patuh",
+      "Menggunakan komunikasi yang menenangkan, menjaga keselamatan, dan meminta dukungan tim bila perlu",
+      "Memancing perdebatan untuk menunjukkan kewibawaan"
+    ],
+    "a": 1
+  },
+  {
+    "q": "Sesudah memberikan imbauan persuasif, tim menemukan dugaan pelanggaran yang memerlukan tindak lanjut resmi. Apa langkah yang paling tepat?",
+    "o": [
+      "Menetapkan sanksi sesuai perkiraan petugas sendiri",
+      "Mendokumentasikan temuan, melapor, dan menindaklanjuti sesuai SOP serta kewenangan yang berlaku",
+      "Menyebarkan identitas warga sebelum verifikasi"
+    ],
+    "a": 1
+  }
+];
+  function questions(){return mode==="pre"?PRE_QUESTIONS:POST_QUESTIONS;}
   const $=id=>document.getElementById(id);
   let mode="pre";
   const cloud=window.SIAP_EVAL_CLOUD;
   const configured=!!(cloud&&cloud.ready);
   function render(){
     const f=$("quizForm");if(!f)return;
-    f.innerHTML=Q.map((q,i)=>'<fieldset class="quiz-question-v113"><legend>'+(i+1)+'. '+q.q+'</legend>'+q.o.map((o,j)=>'<label><input type="radio" name="q'+i+'" value="'+j+'"><span>'+String.fromCharCode(65+j)+'. '+o+'</span></label>').join("")+'</fieldset>').join("");
+    f.innerHTML=questions().map((q,i)=>'<fieldset class="quiz-question-v113"><legend>'+(i+1)+'. '+q.q+'</legend>'+q.o.map((o,j)=>'<label><input type="radio" name="q'+i+'" value="'+j+'"><span>'+String.fromCharCode(65+j)+'. '+o+'</span></label>').join("")+'</fieldset>').join("");
   }
   function setMode(m){
     mode=m;
     document.querySelectorAll(".test-tab").forEach(b=>b.classList.toggle("active",b.dataset.test===m));
     if($("submitQuiz"))$("submitQuiz").textContent="Kirim Hasil "+(m==="pre"?"Pre-Test":"Post-Test");
+    if($("quizModeDescription"))$("quizModeDescription").textContent=m==="pre"?"Pre-Test: jawab berdasarkan pemahaman sebelum mempelajari materi SIAP SATPOL PP.":"Post-Test: jawab kasus lapangan setelah mempelajari materi SIAP SATPOL PP.";
     $("quizResult")?.classList.add("hidden");
     render();
   }
@@ -887,18 +978,20 @@ document.addEventListener("click",e=>{
   }
   $("submitQuiz")?.addEventListener("click",async ()=>{
     const person=identity("quiz");if(!person)return;
+    const currentMode=mode;
+    const activeQuestions=questions();
     let correct=0,answers=[];
-    for(let i=0;i<Q.length;i++){
+    for(let i=0;i<activeQuestions.length;i++){
       const x=document.querySelector('input[name="q'+i+'"]:checked');
       if(!x){alert("Soal nomor "+(i+1)+" belum dijawab.");return;}
-      const v=Number(x.value);answers.push(v);if(v===Q[i].a)correct++;
+      const v=Number(x.value);answers.push(v);if(v===activeQuestions[i].a)correct++;
     }
     const score=correct*20;
-    saveLocal(mode==="pre"?"siap_simple_pre_v113":"siap_simple_post_v113",{...person,score,answers,timestamp:new Date().toISOString()});
-    $("quizScore").textContent=(mode==="pre"?"Pre-Test":"Post-Test")+": "+score+"/100";
-    $("quizReview").innerHTML=Q.map((q,i)=>'<p>'+(answers[i]===q.a?"✓":"×")+' Soal '+(i+1)+'</p>').join("");
+    saveLocal(currentMode==="pre"?"siap_simple_pre_v118":"siap_simple_post_v118",{...person,score,answers,package:"v1.18",timestamp:new Date().toISOString()});
+    $("quizScore").textContent=(currentMode==="pre"?"Pre-Test":"Post-Test")+": "+score+"/100";
+    $("quizReview").textContent=currentMode==="pre"?"Pelajari materi dan isi Post-Test setelah pembelajaran. Kunci jawaban tidak ditampilkan pada Pre-Test.":"Jawaban tersimpan pada perangkat. Nilai resmi mengikuti konfirmasi Google Sheets.";
     $("quizResult").classList.remove("hidden");
-    const packet={mode:mode,name:person.name,code:person.code,unit:person.unit};
+    const packet={mode:currentMode,name:person.name,code:person.code,unit:person.unit};
     answers.forEach((v,i)=>packet["a"+i]=v);
     await deliver(packet,$("quizMessage"),$("submitQuiz"));
   });
@@ -906,13 +999,20 @@ document.addEventListener("click",e=>{
     e.preventDefault();
     const person=identity("feedback");if(!person)return;
     const ease=Number($("fbEase")?.value),help=Number($("fbHelp")?.value),clarity=Number($("fbClarity")?.value);
-    if([ease,help,clarity].some(n=>!Number.isInteger(n)||n<1||n>5)){alert("Lengkapi tiga penilaian kuesioner.");return;}
-    const note=($("fbNote")?.value||"").trim();
-    const data={...person,ease,help,clarity,note,timestamp:new Date().toISOString()};
-    saveLocal("siap_simple_feedback_v113",data);
+    const response=Number($("fbResponse")?.value);
+    const choices=[5,4,3,1];
+    if([ease,help,clarity,response].some(n=>!choices.includes(n))){alert("Lengkapi semua empat pertanyaan penilaian kuesioner.");return;}
+    const responseLabel=$("fbResponse").selectedOptions[0].textContent.trim();
+    // Tetap kompatibel dengan Apps Script lama: jawaban Q4 dan saran disimpan terstruktur di kolom H,
+    // lalu ditampilkan terpisah melalui kolom J-K yang otomatis dihitung di Google Sheets pengelola.
+    const suggestion=($("fbNote")?.value||"").trim().replace(/\\s+/g," ").slice(0,350);
+    const note="Q4_RESPONS="+responseLabel+"; SARAN="+suggestion;
+    const data={...person,ease,help,clarity,response,suggestion,note,package:"v1.18",timestamp:new Date().toISOString()};
+    saveLocal("siap_simple_feedback_v118",data);
     $("feedbackSaved")?.classList.remove("hidden");
     await deliver({...data,mode:"feedback"},$("feedbackStatus"),$("feedbackForm").querySelector('button[type="submit"]'));
   });
   render();
+  if($("quizModeDescription"))$("quizModeDescription").textContent="Pre-Test: jawab berdasarkan pemahaman sebelum mempelajari materi SIAP SATPOL PP.";
 })();
-/* ===== END EVALUASI CLOUD v1.17.0 ===== */
+/* ===== END EVALUASI CLOUD v1.18.0 ===== */
