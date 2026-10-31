@@ -7,7 +7,7 @@
 <meta content="#0B3F6B" name="theme-color"/>
 <meta name="description" content="Media pembelajaran digital untuk komunikasi persuasif, respons awal, simulasi, SOP, dan panduan lapangan Satpol PP Kabupaten Lembata.">
 <title>SIAP SATPOL PP LEMBATA | Panduan Komunikasi dan Respons Lapangan</title>
-<link href="css/style.css?v=1170" rel="stylesheet"/>
+<link href="css/style.css?v=1172" rel="stylesheet"/>
 <meta property="og:title" content="SIAP SATPOL PP LEMBATA | Panduan Komunikasi dan Respons Lapangan">
 <meta property="og:description" content="Media pembelajaran digital untuk komunikasi persuasif, respons awal, simulasi, SOP, dan panduan lapangan Satpol PP Kabupaten Lembata.">
 <meta property="og:url" content="https://arywelan320-hub.github.io/siap-satpolpp-lembata/">
@@ -865,12 +865,11 @@
     <div class="test-note-v113"><b>Cukup 5 pertanyaan</b><p>Gunakan pertanyaan yang sama pada pre-test dan post-test agar perubahan mudah dibandingkan.</p></div>
     <div class="test-tabs test-tabs-v113"><button type="button" class="test-tab active" data-test="pre">Pre-Test</button><button type="button" class="test-tab" data-test="post">Post-Test</button></div>
     <div class="participant-fields-v113">
-  <label><span>Nama peserta</span><input id="participantName" maxlength="60" placeholder="Nama peserta" autocomplete="name" required type="text"></label>
-  <label><span>Kode peserta (sama pada ketiga formulir)</span><input id="participantCode" maxlength="24" placeholder="Contoh: POL001" required type="text"></label>
-  <label><span>Unit / bagian (opsional)</span><input id="participantUnit" maxlength="80" placeholder="Contoh: Regu Trantibum" type="text"></label>
+  <label><span>Nama lengkap peserta</span><input id="participantName" maxlength="60" placeholder="Nama peserta" autocomplete="name" required type="text"></label>
+  <label><span>Unit / bagian</span><select id="participantUnit" required><option value="">Ketuk untuk memilih unit / bagian</option><option value="Sekretariat / Administrasi">Sekretariat / Administrasi</option><option value="Bidang Penegakan Perundang-undangan Daerah">Bidang Penegakan Perundang-undangan Daerah</option><option value="Bidang Ketertiban Umum dan Ketenteraman Masyarakat">Bidang Ketertiban Umum dan Ketenteraman Masyarakat</option><option value="Perlindungan Masyarakat (Linmas)">Perlindungan Masyarakat (Linmas)</option><option value="Bidang Sumber Daya Aparatur">Bidang Sumber Daya Aparatur</option><option value="Bidang Penanggulangan Kebakaran">Bidang Penanggulangan Kebakaran</option><option value="Regu / Petugas Lapangan (Trantibum)">Regu / Petugas Lapangan (Trantibum)</option><option value="Lainnya / Belum Tahu">Lainnya / Belum Tahu</option></select></label>
 </div>
-<p id="evalConnectionNote" role="status">Pengiriman ke pengelola sedang diperiksa.</p>
-<p class="eval-privacy-v1170"><small>Data nama, kode peserta, unit, dan jawaban digunakan untuk evaluasi sosialisasi dan hanya dapat diakses pengelola yang diberi izin. Hindari memasukkan data pribadi lain.</small></p>
+<p class="eval-guide-v1172">Tulis nama lengkap dan pilih unit yang sama pada Pre-Test, Post-Test, dan Kuesioner. Peserta tidak perlu memasukkan kode.</p><p id="evalConnectionNote" role="status">Pengiriman ke pengelola sedang diperiksa.</p>
+<p class="eval-privacy-v1170"><small>Data nama, unit/bagian, dan jawaban digunakan untuk evaluasi sosialisasi dan hanya dapat diakses pengelola yang diberi izin. Hindari memasukkan data pribadi lain.</small></p>
     <form id="quizForm" class="quiz-form quiz-v113"></form>
     <button type="button" class="quiz-submit" id="submitQuiz">Kirim Hasil Pre-Test</button>
     <div class="quiz-result hidden result-v113" id="quizResult"><b id="quizScore"></b><p id="quizMessage" role="status"></p><div id="quizReview"></div></div>
@@ -1118,9 +1117,8 @@
   <header class="subhead theme-slate"><button type="button" class="back navbtn" data-page="beranda">←</button><div><span>MENU PENDUKUNG</span><h1>Uji Coba &amp; Masukan</h1><p>Masukan singkat setelah personel menggunakan SIAP SATPOL PP LEMBATA.</p></div></header>
   <div class="content narrow feedback-simple-v113">
     <form id="feedbackForm" class="feedback-form">
-      <label><span>Nama peserta</span><input id="fbName" maxlength="60" placeholder="Nama peserta" autocomplete="name" required type="text"></label>
-<label><span>Kode peserta yang sama</span><input id="fbCode" maxlength="24" placeholder="Contoh: POL001" required type="text"></label>
-<label><span>Unit / bagian (opsional)</span><input id="fbUnit" maxlength="80" placeholder="Contoh: Regu Trantibum" type="text"></label>
+      <label><span>Nama lengkap peserta</span><input id="fbName" maxlength="60" placeholder="Nama peserta" autocomplete="name" required type="text"></label>
+<label><span>Unit / bagian</span><select id="fbUnit" required><option value="">Ketuk untuk memilih unit / bagian</option><option value="Sekretariat / Administrasi">Sekretariat / Administrasi</option><option value="Bidang Penegakan Perundang-undangan Daerah">Bidang Penegakan Perundang-undangan Daerah</option><option value="Bidang Ketertiban Umum dan Ketenteraman Masyarakat">Bidang Ketertiban Umum dan Ketenteraman Masyarakat</option><option value="Perlindungan Masyarakat (Linmas)">Perlindungan Masyarakat (Linmas)</option><option value="Bidang Sumber Daya Aparatur">Bidang Sumber Daya Aparatur</option><option value="Bidang Penanggulangan Kebakaran">Bidang Penanggulangan Kebakaran</option><option value="Regu / Petugas Lapangan (Trantibum)">Regu / Petugas Lapangan (Trantibum)</option><option value="Lainnya / Belum Tahu">Lainnya / Belum Tahu</option></select></label>
       <label><span>SIAP SATPOL PP LEMBATA mudah digunakan?</span><select id="fbEase" required><option value="">Pilih</option><option value="5">Sangat mudah</option><option value="4">Mudah</option><option value="3">Cukup</option><option value="2">Kurang mudah</option><option value="1">Sulit</option></select></label>
       <label><span>Panduan komunikasi membantu?</span><select id="fbHelp" required><option value="">Pilih</option><option value="5">Sangat membantu</option><option value="4">Membantu</option><option value="3">Cukup</option><option value="2">Kurang membantu</option><option value="1">Tidak membantu</option></select></label>
       <label><span>Materi panduan mudah dipahami?</span><select id="fbClarity" required><option value="">Pilih</option><option value="5">Sangat jelas</option><option value="4">Jelas</option><option value="3">Cukup</option><option value="2">Kurang jelas</option><option value="1">Tidak jelas</option></select></label>
@@ -1150,11 +1148,11 @@
     <span>Satuan Polisi Pamong Praja Kabupaten Lembata</span>
   </div>
 
-  <small class="footer-version-v1133">Aktualisasi Latsar CPNS 2026 • Versi 1.17.1</small>
+  <small class="footer-version-v1133">Aktualisasi Latsar CPNS 2026 • Versi 1.17.2</small>
 </footer>
 <script src="js/config.js?v=1170-aktivasi1"></script>
 <script src="js/evaluasi-cloud.js?v=1171"></script>
-<script src="js/app.js?v=1171"></script>
+<script src="js/app.js?v=1172"></script>
 <script src="js/runtime-final-v1144.js?v=1171"></script>
 </body>
 </html>
