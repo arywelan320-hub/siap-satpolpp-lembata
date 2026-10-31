@@ -845,13 +845,24 @@ document.addEventListener("click",e=>{
     $("quizResult")?.classList.add("hidden");
     render();
   }
+  // Kode internal konsisten untuk nama + unit yang sama. Tidak perlu diisi peserta.
+  // Dua peserta bernama sama dalam unit sama harus dibedakan oleh nama lengkapnya.
+  function makeParticipantCode(name,unit){
+    const key=name.normalize("NFKC").replace(/\s+/g," ").trim().toUpperCase()+"|"+unit.normalize("NFKC").trim().toUpperCase();
+    let first=2166136261,second=2654435761;
+    for(const ch of key){
+      const n=ch.codePointAt(0);
+      first=Math.imul(first^n,16777619)>>>0;
+      second=Math.imul(second^n,1597334677)>>>0;
+    }
+    return "AUTO-"+first.toString(36).toUpperCase().padStart(7,"0")+second.toString(36).toUpperCase().padStart(7,"0");
+  }
   function identity(prefix){
-    const name=($(prefix==="quiz"?"participantName":"fbName")?.value||"").trim();
-    const code=($(prefix==="quiz"?"participantCode":"fbCode")?.value||"").trim().toUpperCase();
+    const name=($(prefix==="quiz"?"participantName":"fbName")?.value||"").trim().replace(/\s+/g," ");
     const unit=($(prefix==="quiz"?"participantUnit":"fbUnit")?.value||"").trim();
-    if(name.length<2||name.length>60){alert("Isi nama peserta (2–60 karakter).");return null;}
-    if(!/^[A-Z0-9-]{4,24}$/.test(code)){alert("Isi kode peserta 4–24 karakter (huruf, angka, tanda hubung). Gunakan kode yang sama untuk pre-test, post-test, dan kuesioner.");return null;}
-    return {name,code,unit};
+    if(name.length<2||name.length>60){alert("Isi nama lengkap peserta (2–60 karakter).");return null;}
+    if(!unit){alert("Silakan ketuk dan pilih unit / bagian.");return null;}
+    return {name,code:makeParticipantCode(name,unit),unit};
   }
   function saveLocal(key,data){
     try{localStorage.setItem(key,JSON.stringify(data));return true;}catch(e){return false;}
@@ -871,7 +882,7 @@ document.addEventListener("click",e=>{
   document.querySelectorAll(".test-tab").forEach(b=>b.addEventListener("click",()=>setMode(b.dataset.test)));
   if($("evalConnectionNote")){
     $("evalConnectionNote").textContent=configured?
-      "Jawaban akan dikirim ke rekap Google Sheets pengelola setelah mendapat konfirmasi. Gunakan kode peserta yang sama pada semua formulir.":
+      "Jawaban dikirim ke Google Sheets pengelola setelah dikonfirmasi. Gunakan nama lengkap dan unit yang sama di semua formulir.":
       "Pengiriman ke Google Sheets belum diaktifkan pengelola. Hasil belum dapat dipantau dari perangkat lain. Jangan gunakan untuk pendataan resmi sebelum aktif.";
   }
   $("submitQuiz")?.addEventListener("click",async ()=>{
