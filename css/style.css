@@ -5734,3 +5734,8 @@ html,body{max-width:100%;overflow-x:hidden}
 .feedback-simple-v113 .feedback-saved{background:#F7FAFC;border-left-color:#CBD5E1}
 @media(max-width:650px){.participant-fields-v113 label>span,#evalConnectionNote{font-size:13px}}
 /* ===== END INTEGRASI EVALUASI v1.17.0 ===== */
+
+/* ===== EVALUASI IDENTITAS RINGKAS v1.17.2 ===== */
+.participant-fields-v113 select{width:100%;box-sizing:border-box;min-height:44px;padding:9px 10px;border:1px solid #C9D8E1;border-radius:9px;background:#fff;color:#17384F;font:inherit;cursor:pointer}
+.eval-guide-v1172{margin:7px 0 10px;padding:10px 12px;border-left:3px solid #D6A12B;border-radius:8px;background:#FFF8E7;color:#5A5261;font-size:12px;line-height:1.5}
+@media(max-width:650px){.participant-fields-v113 select,.feedback-simple-v113 select{min-height:44px;font-size:16px}}
